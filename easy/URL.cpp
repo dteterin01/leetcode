@@ -6,7 +6,7 @@
 //
 class Solution {
 public:
-    static std::string ReplaceSpaces(std::string& S, std::size_t length) {
+    std::string ReplaceSpaces(std::string& S, std::size_t length) {
         std::size_t size = length - 1;
         for (const auto& i : S) {
             if (i == ' ') {
@@ -31,5 +31,7 @@ public:
 int main() {
     std::string test = "test test f f";
     test.resize(100);
-    std::cout << Solution::replaceSpaces(test, test.length());
+
+    Solution solution;
+    std::cout << solution.ReplaceSpaces(test, test.length());
 }

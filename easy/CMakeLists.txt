@@ -1,5 +1,4 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.22.1)
 project(easy)
 
-add_executable(easy
-        ValidSudoku.cpp)
+add_executable(easy FindAllNumbersDisappearedInAnArray.cpp)

@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.22.1)
 project(leetcode)
 
 set(CMAKE_CXX_STANDARD 23)
 
 add_subdirectory(easy)
+add_subdirectory(medium)
