@@ -1,4 +1,4 @@
 cmake_minimum_required(VERSION 3.22.1)
 project(medium)
 
-add_executable(medium HIndex.cpp)
+add_executable(medium FindTheMinimumandMaximumNumberOfNodesBetweenCriticalPoints.cpp)
