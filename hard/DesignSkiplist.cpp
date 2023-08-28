@@ -124,15 +124,3 @@ public:
         return true;
     }
 };
-
-int main()
-{
-    auto * skiplist = new Skiplist();
-    skiplist->add(1);
-    skiplist->add(2);
-    skiplist->add(3);
-    skiplist->add(4);
-
-    skiplist->search(1);
-    return 0;
-}
