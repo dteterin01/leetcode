@@ -1,0 +1,42 @@
+#include <climits>
+#include <valarray>
+
+//
+// Created by Danil on 31.08.2023.
+//
+class Solution {
+private:
+    struct TreeNode {
+        int val;
+        TreeNode *left;
+        TreeNode *right;
+        TreeNode() : val(0), left(nullptr), right(nullptr) {}
+        TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+        TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+    };
+
+public:
+
+    /*
+     *         236
+     *   104        701
+     *       227        911
+     * */
+    void function(TreeNode* root,int &preVal,int &minDiff){
+        if(root == NULL)
+            return;
+        function(root->left, preVal, minDiff);
+        if(preVal != -1){
+            minDiff = std::min(minDiff,root->val - preVal);
+        }
+        preVal = root->val;
+        function(root->right, preVal, minDiff);
+    }
+
+    int getMinimumDifference(TreeNode* root) {
+        int minDiff = INT_MAX;
+        int preVal = -1;
+        function(root,preVal,minDiff);
+        return minDiff;
+    }
+};

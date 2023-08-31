@@ -5,26 +5,20 @@
 //
 class Solution {
 private:
-    static double binarySearchMedian(std::vector<int>& nums1, std::vector<int>& nums2, int needToFindIdx)
+    static double binarySearchMedian(std::vector<int>& a, std::vector<int>& b, int needToFindIdx)
     {
-        int aSize = nums1.size(), aStart = 0, aEnd = aSize - 1;
-        int bSize = nums2.size(), bStart = 0, bEnd = bSize - 1;
+        int aSize = a.size(), aStart = 0, aEnd = aSize - 1;
+        int bSize = b.size(), bStart = 0, bEnd = bSize - 1;
 
-        while (true)
+        while (aStart <= aEnd && bStart <= bEnd)
         {
-            if (aStart > aEnd)
-                return nums2[needToFindIdx - aStart];
-
-            if (bStart > bEnd)
-                return nums1[needToFindIdx - bStart];
-
             int aMid = (aStart + aEnd) / 2, bMid = (bStart + bEnd) / 2;
-            int aVal = nums1[aMid], bVal = nums2[bMid];
+            int aVal = a[aMid], bVal = b[bMid];
 
             if (aMid + bMid < needToFindIdx)
             {
-                if (aVal > bVal) aStart = aMid + 1;
-                else bStart = bMid + 1;
+                if (aVal > bVal) bStart = bMid + 1;
+                else aStart = aMid + 1;
             }
             else
             {
@@ -32,21 +26,20 @@ private:
                 else bEnd = bMid - 1;
             }
         }
+
+        if (aStart > aEnd)
+            return b[needToFindIdx - aStart];
+        else
+            return a[needToFindIdx - bStart];
     }
 
 public:
     double findMedianSortedArrays(std::vector<int>& nums1, std::vector<int>& nums2)
     {
-        int aSize = nums1.size(), bSize = nums2.size();
-        int mergeSize = aSize + bSize;
-        if (mergeSize % 2)
-        {
-            return binarySearchMedian(nums1, nums2, mergeSize/2);
-        }
-        else
-        {
-            return (binarySearchMedian(nums1, nums2, mergeSize/2) + binarySearchMedian(nums1, nums2, mergeSize/2 - 1)) / 2;
-        }
+        int mergedSize = nums1.size() + nums2.size();
+        return (mergedSize) % 2 ?
+            binarySearchMedian(nums1, nums2, mergedSize / 2) :
+            (binarySearchMedian(nums1, nums2, mergedSize / 2) + binarySearchMedian(nums1, nums2, mergedSize / 2 - 1)) / 2;
     }
 
 };
